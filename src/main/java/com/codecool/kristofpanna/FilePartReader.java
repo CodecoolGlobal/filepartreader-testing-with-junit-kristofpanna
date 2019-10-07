@@ -9,7 +9,6 @@ public class FilePartReader {
         /*
         sets the class' instance variables to some invalid default value
          */
-        // TODO
     }
 
     public void setup(String filePath, Integer fromLine, Integer toLine) throws IllegalArgumentException {
@@ -18,6 +17,9 @@ public class FilePartReader {
             if toLine is smaller than fromLine
             if fromLine is smaller than 1
          */
+        if (toLine > fromLine) {
+            throw new IllegalArgumentException("toLine is smaller than fromLine.");
+        }
         // TODO
     }
 
