@@ -7,7 +7,7 @@ public class FilePartReader {
 
     public FilePartReader() {
         /*
-        sets the class' instance variables to some invalid default value
+        sets the class' instance variables to some invalid default value (-> default null)
          */
     }
 
@@ -20,7 +20,13 @@ public class FilePartReader {
         if (toLine > fromLine) {
             throw new IllegalArgumentException("toLine is smaller than fromLine.");
         }
-        // TODO
+        if (fromLine < 1) {
+            throw new IllegalArgumentException("fromLine is smaller than 1.");
+        }
+
+        this.filePath = filePath;
+        this.fromLine = fromLine;
+        this.toLine = toLine;
     }
 
     public String read() {
