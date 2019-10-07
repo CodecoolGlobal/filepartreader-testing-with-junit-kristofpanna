@@ -1,5 +1,9 @@
 package com.codecool.kristofpanna;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class FilePartReader {
     String filePath;
     Integer fromLine;
@@ -29,12 +33,11 @@ public class FilePartReader {
         this.toLine = toLine;
     }
 
-    public String read() {
+    public String read() throws IOException {
         /*
         opens the file on filePath , and gives back it's content as a String
          */
-        // TODO
-        return null;
+        return new String(Files.readAllBytes(Paths.get(filePath)));
     }
 
     public String readLines() {
