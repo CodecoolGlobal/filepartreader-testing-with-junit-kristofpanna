@@ -34,7 +34,7 @@ public class FileWordAnalyzerTest {
         filePartReader.setup("src/test/resources/spec_chars.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
-                Arrays.asList("igen", "ez","ilyen", "csak", "megjobb", "szer", "jobb", "nem", "egyszer"),
+                Arrays.asList("igen", "ez", "ilyen", "csak", "megjobb", "szer", "jobb", "nem", "egyszer"),
                 fileWordAnalyzer.getWords().collect(Collectors.toList())
         );
     }
@@ -94,7 +94,7 @@ public class FileWordAnalyzerTest {
         filePartReader.setup("src/test/resources/file_to_read1.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
-                Arrays.asList("monkey","only", "monkey", "one"),
+                Arrays.asList("monkey", "only", "monkey", "one"),
                 fileWordAnalyzer.getWordsContainingSubstring("on")
         );
     }
@@ -116,6 +116,36 @@ public class FileWordAnalyzerTest {
         assertEquals(
                 Collections.emptyList(),
                 fileWordAnalyzer.getWordsContainingSubstring("on")
+        );
+    }
+
+    @Test
+    void getStringsWhichPalindromes_multiple_multiple() throws IOException {
+        filePartReader.setup("src/test/resources/multiple.txt", 1, 3);
+        FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
+        assertEquals(
+                Arrays.asList("bbb", "d", "d", "aaaa", "d", "cc", "bbb"),
+                fileWordAnalyzer.getStringsWhichPalindromes()
+        );
+    }
+
+    @Test
+    void getStringsWhichPalindromes_noMatching_emptyList() throws IOException {
+        filePartReader.setup("src/test/resources/file_to_read1.txt", 1, 3);
+        FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
+        assertEquals(
+                Collections.emptyList(),
+                fileWordAnalyzer.getStringsWhichPalindromes()
+        );
+    }
+
+    @Test
+    void getStringsWhichPalindromes_emptyFile_emptyList() throws IOException {
+        filePartReader.setup("src/test/resources/empty.txt", 1, 3);
+        FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
+        assertEquals(
+                Collections.emptyList(),
+                fileWordAnalyzer.getStringsWhichPalindromes()
         );
     }
 }

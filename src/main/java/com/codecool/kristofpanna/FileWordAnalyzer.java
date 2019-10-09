@@ -3,6 +3,7 @@ package com.codecool.kristofpanna;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -34,10 +35,16 @@ public class FileWordAnalyzer {
     /**
      * Returns the words which are palindrome.
      */
-    public List<String> getStringsWhichPalindromes() {
+    public List<String> getStringsWhichPalindromes() throws IOException {
+        Predicate<String> palindrome = s -> s.equals(reverse(s));
+        return getWords()
+                .filter(palindrome)
+                .collect(Collectors.toList());
+    }
 
-        // TODO
-        return null;
+    private String reverse(String string) {
+        StringBuilder reversed = new StringBuilder(string).reverse();
+        return reversed.toString();
     }
 
     /**
