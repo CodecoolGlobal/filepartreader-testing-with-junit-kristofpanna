@@ -1,6 +1,5 @@
 package com.codecool.kristofpanna;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,34 +12,35 @@ public class FileWordAnalyzer {
         this.filePartReader = filePartReader;
     }
 
+    /**
+     * Returns the words ordered alphabetically as a List
+     */
     public List<String> getWordsOrderedAlphabetically() {
-        /*
-        calls FilePartReader.readLines ()
-        returns the words ordered alphabetically as an (Array)List
-         */
         return getWords()
                 .sorted()
                 .collect(Collectors.toList());
     }
-
+    /**
+     * Returns the words which contain subString
+     */
     public List<String> getWordsContainingSubstring(String subString) {
-        /*
-        calls FilePartReader.readLines ()
-        returns the words which contains the subString
-         */
+
         // TODO
         return null;
     }
 
+    /**
+     * Returns the words which are palindrome
+     */
     public List<String> getStringsWhichPalindromes() {
-        /*
-        calls FilePartReader.readLines ()
-        returns the words from the String which are palindrome
-         */
+
         // TODO
         return null;
     }
 
+    /**
+     * Calls FilePartReader.readLines(), returns Stream of words
+     */
     Stream<String> getWords() {
         String text = filePartReader.readLines();
         String[] splitByWhitespace = text.split("\\s+");
