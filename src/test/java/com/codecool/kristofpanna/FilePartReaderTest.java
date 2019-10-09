@@ -18,6 +18,13 @@ public class FilePartReaderTest {
     }
 
     @Test
+    void constructor__valuesNull() {
+        assertNull(filePartReader.filePath, "filePath is not null after FilePartReader() constructor call");
+        assertNull(filePartReader.fromLine, "fromLine is not null after FilePartReader() constructor call");
+        assertNull(filePartReader.toLine, "toLine is not null after FilePartReader() constructor call");
+    }
+
+    @Test
     void setup_toLineIsSmallerThanFromLine_ThrowsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, ()-> {
             filePartReader.setup(validFilePath, 1, 2);
