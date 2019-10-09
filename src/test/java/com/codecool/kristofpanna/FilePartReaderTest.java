@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FilePartReaderTest {
     private static final String validFilePath = "src/test/resources/file_to_read1.txt";
     private static final String invalidFilePath = "src/test/resources/non_existent_file.txt";
+    private static final String emptyFilePath = "src/test/resources/empty.txt";
 
     private FilePartReader filePartReader;
 
@@ -67,6 +68,12 @@ public class FilePartReaderTest {
     }
 
     @Test
+    void read_emptyFile_returnsEmptyString() throws IOException {
+        filePartReader.setup(emptyFilePath, 1, 2);
+        assertEquals("", filePartReader.read());
+    }
+
+    @Test
     void readLines_firstLineToFirstLine_returnsFirstLine() {
         filePartReader.setup(validFilePath, 1, 1);
         // with the linebreak char at the end
@@ -106,5 +113,11 @@ public class FilePartReaderTest {
     void readLines_ExceptionWhileRead_returnsNull() {
         filePartReader.setup(invalidFilePath, 1, 2);
         assertNull(filePartReader.readLines());
+    }
+
+    @Test
+    void readLines_emptyFile_returnsEmptyString() throws IOException {
+        filePartReader.setup(emptyFilePath, 1, 2);
+        assertEquals("", filePartReader.read());
     }
 }
