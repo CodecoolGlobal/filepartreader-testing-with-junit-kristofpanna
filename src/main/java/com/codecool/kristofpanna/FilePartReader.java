@@ -17,9 +17,10 @@ public class FilePartReader {
 
     /**
      * Set up the reader parameters.
+     *
      * @param filePath file to read
      * @param fromLine index of first line to read (from 1)
-     * @param toLine index of last line to read (from 1)
+     * @param toLine   index of last line to read (from 1)
      * @throws IllegalArgumentException if toLine < fromLine, or fromLine < 1
      */
     public void setup(String filePath, Integer fromLine, Integer toLine) throws IllegalArgumentException {
@@ -37,6 +38,7 @@ public class FilePartReader {
 
     /**
      * Opens the file on filePath, returns its content as a String.
+     *
      * @throws IOException if there was a problem reading the file
      */
     public String read() throws IOException {
@@ -45,20 +47,15 @@ public class FilePartReader {
 
     /**
      * Returns every line from between fromLine and toLine (both of them are included) as a String.
-     *
+     * <p>
      * If fromLine is 1, it means the very first row in the file.
      * Also, if fromLine is 1 and toLine is 1 also, we will read only the very first line.
      */
-    public String readLines() {
+    public String readLines() throws IOException {
         /*
          */
         String whole;
-        try {
-            whole = read();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
+        whole = read();
         String[] wholeLines = whole.split("(?<=\n)");  // linebreak char stays at the end of lines
 
         int wholeLength = wholeLines.length;

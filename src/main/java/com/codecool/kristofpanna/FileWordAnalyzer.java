@@ -1,5 +1,6 @@
 package com.codecool.kristofpanna;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ public class FileWordAnalyzer {
     /**
      * Returns the words ordered alphabetically as a List.
      */
-    public List<String> getWordsOrderedAlphabetically() {
+    public List<String> getWordsOrderedAlphabetically() throws IOException {
         return getWords()
                 .sorted()
                 .collect(Collectors.toList());
@@ -24,7 +25,7 @@ public class FileWordAnalyzer {
     /**
      * Returns the words which contain subString.
      */
-    public List<String> getWordsContainingSubstring(String subString) {
+    public List<String> getWordsContainingSubstring(String subString) throws IOException {
         return getWords()
                 .filter(s -> s.contains(subString))
                 .collect(Collectors.toList());
@@ -42,7 +43,7 @@ public class FileWordAnalyzer {
     /**
      * Calls FilePartReader.readLines(), returns Stream of words.
      */
-    Stream<String> getWords() {
+    Stream<String> getWords() throws IOException {
         String text = filePartReader.readLines();
         String[] splitByWhitespace = text.split("\\s+");
         return Arrays.stream(splitByWhitespace)

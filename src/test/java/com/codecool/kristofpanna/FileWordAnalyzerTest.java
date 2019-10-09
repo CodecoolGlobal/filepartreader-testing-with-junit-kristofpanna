@@ -2,6 +2,7 @@ package com.codecool.kristofpanna;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWords_containsDuplicates_returnContainsMultipleTimes() {
+    void getWords_containsDuplicates_returnContainsMultipleTimes() throws IOException {
         filePartReader.setup("src/test/resources/multiple.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
@@ -29,7 +30,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWords_containsSpecialChars_returnWithoutSpecialChars() {
+    void getWords_containsSpecialChars_returnWithoutSpecialChars() throws IOException {
         filePartReader.setup("src/test/resources/spec_chars.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
@@ -39,7 +40,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWords_containsAccent_handleAccentedLettersAsLetter() {
+    void getWords_containsAccent_handleAccentedLettersAsLetter() throws IOException {
         filePartReader.setup("src/test/resources/accent.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
@@ -49,7 +50,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWords_emptyFile_emptyList() {
+    void getWords_emptyFile_emptyList() throws IOException {
         filePartReader.setup("src/test/resources/empty.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
@@ -59,7 +60,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWordsOrderedAlphabetically_multiple_multipleOrdered() {
+    void getWordsOrderedAlphabetically_multiple_multipleOrdered() throws IOException {
         filePartReader.setup("src/test/resources/multiple.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
@@ -69,7 +70,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWordsOrderedAlphabetically_upperLowerCaseWithAccent_UpperFirstAccentLast() {
+    void getWordsOrderedAlphabetically_upperLowerCaseWithAccent_UpperFirstAccentLast() throws IOException {
         filePartReader.setup("src/test/resources/upper_lower.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
@@ -79,7 +80,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWordsOrderedAlphabetically_emptyFile_emptyList() {
+    void getWordsOrderedAlphabetically_emptyFile_emptyList() throws IOException {
         filePartReader.setup("src/test/resources/empty.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
@@ -89,7 +90,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWordsContainingSubstring_multiple_multiple() {
+    void getWordsContainingSubstring_multiple_multiple() throws IOException {
         filePartReader.setup("src/test/resources/file_to_read1.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
@@ -99,7 +100,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWordsContainingSubstring_noMatching_emptyList() {
+    void getWordsContainingSubstring_noMatching_emptyList() throws IOException {
         filePartReader.setup("src/test/resources/upper_lower.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(
@@ -109,7 +110,7 @@ public class FileWordAnalyzerTest {
     }
 
     @Test
-    void getWordsContainingSubstring_emptyFile_emptyList() {
+    void getWordsContainingSubstring_emptyFile_emptyList() throws IOException {
         filePartReader.setup("src/test/resources/empty.txt", 1, 3);
         FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
         assertEquals(

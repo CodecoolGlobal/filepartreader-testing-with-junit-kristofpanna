@@ -74,7 +74,7 @@ public class FilePartReaderTest {
     }
 
     @Test
-    void readLines_firstLineToFirstLine_returnsFirstLine() {
+    void readLines_firstLineToFirstLine_returnsFirstLine() throws IOException {
         filePartReader.setup(validFilePath, 1, 1);
         // with the linebreak char at the end
         assertEquals(
@@ -84,7 +84,7 @@ public class FilePartReaderTest {
     }
 
     @Test
-    void readLines_multipleLines_returnsMultipleLines() {
+    void readLines_multipleLines_returnsMultipleLines() throws IOException {
         filePartReader.setup(validFilePath, 2, 3);
         assertEquals(
                 "No others.\n" +
@@ -94,13 +94,13 @@ public class FilePartReaderTest {
     }
 
     @Test
-    void readLines_tooBigFromValue_returnsEmpty() {
+    void readLines_tooBigFromValue_returnsEmpty() throws IOException {
         filePartReader.setup(validFilePath, 5, 8);
         assertEquals( "", filePartReader.readLines());
     }
 
     @Test
-    void readLines_tooBigToValue_returnsToEnd() {
+    void readLines_tooBigToValue_returnsToEnd() throws IOException {
         filePartReader.setup(validFilePath, 2, 4);
         assertEquals(
                 "No others.\n" +
@@ -110,9 +110,11 @@ public class FilePartReaderTest {
     }
 
     @Test
-    void readLines_ExceptionWhileRead_returnsNull() {
+    void readLines_ExceptionWhileRead_throwsException() {
         filePartReader.setup(invalidFilePath, 1, 2);
-        assertNull(filePartReader.readLines());
+        assertThrows(IOException.class, () -> {
+            filePartReader.readLines();
+        });
     }
 
     @Test
