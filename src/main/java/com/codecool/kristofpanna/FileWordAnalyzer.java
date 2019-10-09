@@ -20,13 +20,14 @@ public class FileWordAnalyzer {
                 .sorted()
                 .collect(Collectors.toList());
     }
+
     /**
      * Returns the words which contain subString
      */
     public List<String> getWordsContainingSubstring(String subString) {
-
-        // TODO
-        return null;
+        return getWords()
+                .filter(s -> s.contains(subString))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -45,7 +46,8 @@ public class FileWordAnalyzer {
         String text = filePartReader.readLines();
         String[] splitByWhitespace = text.split("\\s+");
         return Arrays.stream(splitByWhitespace)
-                .map(s -> s.replaceAll("[^\\p{L}]", ""));
+                .map(s -> s.replaceAll("[^\\p{L}]", ""))
+                .filter(s -> !s.equals(""));
     }
 
 
