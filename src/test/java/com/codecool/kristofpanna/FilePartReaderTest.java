@@ -51,10 +51,11 @@ public class FilePartReaderTest {
     @Test
     void read_validFilePath_returnsContent() throws IOException {
         filePartReader.setup(validFilePath, 1, 2);
-        assertEquals(filePartReader.read(),
+        assertEquals(
                 "The monkey 123 is the only monkey here.\n" +
                         "No others.\n" +
-                        "Just the one.\n");
+                        "Just the one.\n",
+                filePartReader.read());
     }
 
     @Test
@@ -68,29 +69,37 @@ public class FilePartReaderTest {
     @Test
     void readLines_firstLineToFirstLine_returnsFirstLine() {
         filePartReader.setup(validFilePath, 1, 1);
-        assertEquals(filePartReader.readLines(), "The monkey 123 is the only monkey here.\n"); // with the linebreak char at the end
+        // with the linebreak char at the end
+        assertEquals(
+                "The monkey 123 is the only monkey here.\n",
+                filePartReader.readLines()
+        );
     }
 
     @Test
     void readLines_multipleLines_returnsMultipleLines() {
         filePartReader.setup(validFilePath, 2, 3);
-        assertEquals(filePartReader.readLines(),
+        assertEquals(
                 "No others.\n" +
-                        "Just the one.\n");
+                        "Just the one.\n",
+                filePartReader.readLines()
+        );
     }
 
     @Test
     void readLines_tooBigFromValue_returnsEmpty() {
         filePartReader.setup(validFilePath, 5, 8);
-        assertEquals(filePartReader.readLines(), "");
+        assertEquals( "", filePartReader.readLines());
     }
 
     @Test
     void readLines_tooBigToValue_returnsToEnd() {
         filePartReader.setup(validFilePath, 2, 4);
-        assertEquals(filePartReader.readLines(),
+        assertEquals(
                 "No others.\n" +
-                        "Just the one.\n");
+                        "Just the one.\n",
+                filePartReader.readLines()
+        );
     }
 
     @Test
