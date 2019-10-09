@@ -3,6 +3,7 @@ package com.codecool.kristofpanna;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileWordAnalyzer {
@@ -15,11 +16,11 @@ public class FileWordAnalyzer {
     public List<String> getWordsOrderedAlphabetically() {
         /*
         calls FilePartReader.readLines ()
-        returns the words ordered alphabetically as an ArrayList
+        returns the words ordered alphabetically as an (Array)List
          */
-        // TODO
-        List<String> wordsOrderedAlphabetically = new ArrayList<>();
-        return wordsOrderedAlphabetically;
+        return getWords()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public List<String> getWordsContainingSubstring(String subString) {

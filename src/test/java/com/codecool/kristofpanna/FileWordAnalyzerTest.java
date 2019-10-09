@@ -47,4 +47,25 @@ public class FileWordAnalyzerTest {
         );
     }
 
+    @Test
+    void getWordsOrderedAlphabetically_multiple_multipleOrdered() {
+        filePartReader.setup("src/test/resources/multiple.txt", 1, 3);
+        FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
+        assertEquals(
+                Arrays.asList("aaaa", "bbb", "bbb", "cc", "d", "d", "d"),
+                fileWordAnalyzer.getWordsOrderedAlphabetically()
+        );
+    }
+
+    @Test
+    void getWordsOrderedAlphabetically_upperLowerCase_() {
+        filePartReader.setup("src/test/resources/upper_lower.txt", 1, 3);
+        FileWordAnalyzer fileWordAnalyzer = new FileWordAnalyzer(filePartReader);
+        assertEquals(
+                Arrays.asList("A", "B", "a", "a", "b", "Á", "á"),
+                fileWordAnalyzer.getWordsOrderedAlphabetically()
+        );
+    }
+
+
 }
