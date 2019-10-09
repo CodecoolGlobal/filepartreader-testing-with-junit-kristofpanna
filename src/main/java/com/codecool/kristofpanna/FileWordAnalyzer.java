@@ -13,7 +13,7 @@ public class FileWordAnalyzer {
     }
 
     /**
-     * Returns the words ordered alphabetically as a List
+     * Returns the words ordered alphabetically as a List.
      */
     public List<String> getWordsOrderedAlphabetically() {
         return getWords()
@@ -22,7 +22,7 @@ public class FileWordAnalyzer {
     }
 
     /**
-     * Returns the words which contain subString
+     * Returns the words which contain subString.
      */
     public List<String> getWordsContainingSubstring(String subString) {
         return getWords()
@@ -31,7 +31,7 @@ public class FileWordAnalyzer {
     }
 
     /**
-     * Returns the words which are palindrome
+     * Returns the words which are palindrome.
      */
     public List<String> getStringsWhichPalindromes() {
 
@@ -40,7 +40,7 @@ public class FileWordAnalyzer {
     }
 
     /**
-     * Calls FilePartReader.readLines(), returns Stream of words
+     * Calls FilePartReader.readLines(), returns Stream of words.
      */
     Stream<String> getWords() {
         String text = filePartReader.readLines();
